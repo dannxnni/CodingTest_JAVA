@@ -16,23 +16,17 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             dp[1][i] = 1;
         }
-
-        int result = 0;
-        for (int i = 0; i < 10; i++) {
-            result += recur(N,i);
-            result %= MOD;
-        }
-        System.out.println(result);
-    }
-    public static long recur(int N, int num) {
-        if (dp[N][num] == 0) {
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j <= i; j++) {
-                    dp[N][i] += recur(N - 1, j);
-                    dp[N][i] %= MOD;
+        for (int i = 2; i < N+1; i++) {
+            for (int j = 0; j < 10; j++) {
+                for (int k = 0; k <= j; k++) {
+                    dp[i][j] = (dp[i][j] + dp[i-1][k] % MOD);
                 }
             }
         }
-        return dp[N][num] % MOD;
+        int answer = 0;
+        for (int i = 0; i < 10; i++) {
+            answer += dp[N][i];
+        }
+        System.out.println(answer%MOD);
     }
 }
