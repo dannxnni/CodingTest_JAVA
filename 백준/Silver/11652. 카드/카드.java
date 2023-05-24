@@ -17,9 +17,10 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             long card = Long.parseLong(br.readLine());
-
+            
+            // getOrDefault (key, defaultValue) : 찾는 key가 존재하면 해당 key에 매핑 된 값 반환, 그렇지 않으면 디폴트 값이 반환
             cards.put(card, cards.getOrDefault(card, 0) + 1);
-
+            
             if (cards.get(card) > max) {
                 max = cards.get(card);
                 x = card;
